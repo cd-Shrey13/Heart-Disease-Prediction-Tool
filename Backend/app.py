@@ -26,3 +26,6 @@ def predict():
     result = predict_heart_disease(input_data)
     
     return jsonify({'prediction': result})
+
+if __name__ == '__main__':
+    app.run()
