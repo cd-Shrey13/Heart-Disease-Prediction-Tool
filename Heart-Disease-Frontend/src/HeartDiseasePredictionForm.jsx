@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const HeartDiseasePredictionForm = () => {
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const [formData, setFormData] = useState({
     age: "",
     sex: "",
@@ -26,7 +27,7 @@ const HeartDiseasePredictionForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://heart-disease-prediction-tool.onrender.com/predict', formData);
+      const response = await axios.post(`${backendUrl}`, formData);
       alert(`Prediction: ${response.data.prediction}`);
     } catch (error) {
       console.error("Error submitting the form:", error);
