@@ -27,7 +27,7 @@ const HeartDiseasePredictionForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${backendUrl}`, formData);
+      const response = await axios.post(`https://heart-disease-prediction-tool.onrender.com/predict`, formData);
       alert(`Prediction: ${response.data.prediction}`);
     } catch (error) {
       console.error("Error submitting the form:", error);
