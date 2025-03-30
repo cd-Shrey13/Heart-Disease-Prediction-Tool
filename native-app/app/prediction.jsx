@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { TextInput, RadioButton } from "react-native-paper";
+import { TextInput, RadioButton, ActivityIndicator, MD2Colors} from "react-native-paper";
+
 // import { configDotenv } from "dotenv";
 // import { BACKEND_URL } from "@env";
 
@@ -51,7 +52,7 @@ export default function FormScreen() {
     }
 
     try {
-      const response = await fetch(process.env.EXPO_PUBLIC_PREDICT_URL, {
+      const response = await fetch("https://heart-disease-prediction-tool.onrender.com/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -92,6 +93,7 @@ export default function FormScreen() {
           <View style={styles.inputWrapper}>
             <View style={styles.radioGroup}>
               <View style={styles.radioOption}>
+
                 <RadioButton
                   value="1"
                   status={formData.sex === "1" ? "checked" : "unchecked"}
@@ -143,13 +145,16 @@ export default function FormScreen() {
 
       {/* Modal to Show Prediction Result */}
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
+
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Prediction Successful!</Text>
+    {/* <ActivityIndicator animating={false} color={MD2Colors.red800} size={"large"} /> */}
 
             <TouchableOpacity
               style={styles.modalButton}
               onPress={goToResultPage}
+              
             >
               <Text style={styles.modalButtonText}>Show Result</Text>
             </TouchableOpacity>

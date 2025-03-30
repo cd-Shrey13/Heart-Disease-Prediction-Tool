@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import HealthTip from "../components/HealthTip";
 import { useNavigation } from "expo-router";
+import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 const predictions = [
   { id: "1", date: "2025-03-20", risk: "High", age: 60, bp: 140, chol: 220 },
   { id: "2", date: "2025-03-22", risk: "Low", age: 45, bp: 120, chol: 180 },
@@ -22,7 +23,7 @@ const tips = [
   "Monitor blood pressure and cholesterol.",
 ];
 async function connectionStatus() {
-  const response = await fetch(process.env.EXPO_PUBLIC_BACKEND_URL, {
+  const response = await fetch("https://heart-disease-prediction-tool.onrender.com/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -44,8 +45,8 @@ const Dashboard = () => {
   const navigation = useNavigation();
   return (
     <ScrollView
-      contentContainerStyle={styles.container}
-      nestedScrollEnabled={true}
+    contentContainerStyle={styles.container}
+    nestedScrollEnabled={true}
     >
       {/* Header Section */}
       <View style={styles.header}>
