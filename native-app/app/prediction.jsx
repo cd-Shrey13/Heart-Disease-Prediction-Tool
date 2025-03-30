@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { TextInput, RadioButton } from "react-native-paper";
+// import { configDotenv } from "dotenv";
+// import { BACKEND_URL } from "@env";
 
 import {
   View,
@@ -12,6 +14,8 @@ import {
   StyleSheet,
   ToastAndroid,
 } from "react-native";
+
+// configDotenv()
 
 export default function FormScreen() {
   const [formData, setFormData] = useState({
@@ -47,7 +51,7 @@ export default function FormScreen() {
     }
 
     try {
-      const response = await fetch("http://192.168.86.140:5000/predict", {
+      const response = await fetch(process.env.EXPO_PUBLIC_PREDICT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

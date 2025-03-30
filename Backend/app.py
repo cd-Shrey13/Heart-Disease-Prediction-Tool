@@ -20,7 +20,10 @@ rf_model = joblib.load(model_path)
 #checking
 @app.route('/',methods=["GET"])
 def printHello():
-    return "<h1>hello from flask app!</h1>"
+    result = {
+        "success": True
+    }
+    return jsonify(result)
 
 
 # Prediction endpoint
